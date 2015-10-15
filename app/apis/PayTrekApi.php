@@ -1,5 +1,6 @@
 <?php
 class PayTrekApi extends Api{
+    //Hatalı//Method isimlendirmeleri camelCase olmalı.
     public function __construct(){
         parent::__construct();
     }

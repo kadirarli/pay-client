@@ -39,13 +39,13 @@ class PaymentController extends \BaseController{
         $select_payment_gateway = Input::get("select_payment_gateway");
         $text_value = Input::get("text_value");
         $select_value_currency = Input::get("select_value_currency");
-        $new_value = Payment::checkCurrency($select_payment_gateway,$text_value,$select_value_currency);
+        //Hatalı//$new_value = Payment::checkCurrency($select_payment_gateway,$text_value,$select_value_currency);
         if($new_value["success"] == "0")
             return array("success"=>"0","error_message"=>Lang::get("messages.chooseAnotherGateway"));    
         $text_value = $new_value["text_value"];
-        $result = Payment::pay($text_name,$select_payment_gateway,$text_value);
+        //Hatalı//$result = Payment::pay($text_name,$select_payment_gateway,$text_value);
         if($result["success"] == "1"){
-        	$mailControl = Payment::sendVoucher($text_name,$text_value,$select_value_currency);
+        	//Hatalı//$mailControl = Payment::sendVoucher($text_name,$text_value,$select_value_currency);
         	if($mailControl["success"]){
         		return array("success"=>"1","success_message"=>Lang::get("messages.missionCompleted"));
         	}else{

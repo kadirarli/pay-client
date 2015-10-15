@@ -1,5 +1,6 @@
 <?php
 class PaypalApi extends Api{
+    //Hatalı//Method isimlendirmeleri camelCase olmalı.
     public static $status = array("success"=>"0");
     public function __construct(){
         self::$status = self::ApiStatus();

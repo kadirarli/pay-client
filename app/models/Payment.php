@@ -1,5 +1,6 @@
 <?php
 class Payment{
+    //Hatalı//Her ödeme sistemi için ayrı sınıf oluşturulmalı.
      /**
      * Ödeme noktalarını kontrol eder.
      * @return  Array  Aktif olan ödeme noktaları
@@ -20,6 +21,7 @@ class Payment{
      * @return  Int     Kur farkı uygulanmış yeni değer
      */
     static function checkCurrency($select_payment_gateway,$text_value,$select_value_currency){
+        //Hatalı//Her ödeme sisteminin ayrı sınıfı olduktan sonra if else lere ihtiyaç kalmayacak. Design Pattern ve OOP( abstract/interface )
     	$paypal_default_currency = PaypalApi::ApiCurrency();
 		$payu_default_currency = PayUApi::ApiCurrency();
 		$paytrek_default_currency = PayTrekApi::ApiCurrency();
@@ -51,6 +53,7 @@ class Payment{
      * @return  Array   Ödeme Durumu
      */
     static function pay($text_name,$select_payment_gateway,$text_value){
+        //Hatalı//Her ödeme sisteminin ayrı sınıfı olduktan sonra if else lere ihtiyaç kalmayacak. Design Pattern ve OOP( abstract/interface )
         if($select_payment_gateway == "paypal")
             $gatewayStatus = PaypalApi::ApiStatus();
         elseif($select_payment_gateway == "payu")
