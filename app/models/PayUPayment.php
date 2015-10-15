@@ -1,6 +1,5 @@
 <?php
-class Payment{
-    //Hatalı//Her ödeme sistemi için ayrı sınıf oluşturulmalı.
+class PayUPayment{
      /**
      * Ödeme noktalarını kontrol eder.
      * @return  Array  Aktif olan ödeme noktaları
