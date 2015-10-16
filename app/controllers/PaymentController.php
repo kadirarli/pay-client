@@ -8,15 +8,12 @@ class PaymentController extends \BaseController{
      * @return  View  Ödeme Sayfası
      */
     public function paymentPage(){
-    	//Sayfa açıldığında aktif olan ödeme noktalarını göstermek için.
-    	$gatewayStatus = Payment::paymentGateWayStatus();
-    	$selectBox = array();
-    	if($gatewayStatus["paypal"]["success"] == "1")
-    		$selectBox = array_add($selectBox, 'paypal', 'Paypal');
-    	if($gatewayStatus["payu"]["success"] == "1")
-    		$selectBox = array_add($selectBox, 'payu', 'PayU');
-    	if($gatewayStatus["paytrek"]["success"] == "1")
-    		$selectBox = array_add($selectBox, 'paytrek', 'Paytrek');
+        //Bu kısım değişecek artık....
+        //$gatewayStatus = Payment::paymentGateWayStatus();
+		$selectBox = array();
+        $selectBox = array_add($selectBox, 'paypal', 'Paypal');
+		$selectBox = array_add($selectBox, 'payu', 'PayU');
+		$selectBox = array_add($selectBox, 'paytrek', 'Paytrek');
     	$data = array("data"=>$selectBox);
     	return View::make('paymentPage',$data);
     }
@@ -39,22 +36,12 @@ class PaymentController extends \BaseController{
         $select_payment_gateway = Input::get("select_payment_gateway");
         $text_value = Input::get("text_value");
         $select_value_currency = Input::get("select_value_currency");
-        //Hatalı//$new_value = Payment::checkCurrency($select_payment_gateway,$text_value,$select_value_currency);
-        if($new_value["success"] == "0")
-            return array("success"=>"0","error_message"=>Lang::get("messages.chooseAnotherGateway"));    
-        $text_value = $new_value["text_value"];
-        //Hatalı//$result = Payment::pay($text_name,$select_payment_gateway,$text_value);
-        if($result["success"] == "1"){
-        	//Hatalı//$mailControl = Payment::sendVoucher($text_name,$text_value,$select_value_currency);
-        	if($mailControl["success"]){
-        		return array("success"=>"1","success_message"=>Lang::get("messages.missionCompleted"));
-        	}else{
-        		return array("success"=>"0","error_message"=>Lang::get("messages.mailFailed"));
-        	}
-        }else{
-        	return array("success"=>"0",
-        		"error_message"=>Lang::get("messages.chooseAnotherGateway"));
-        }
+
+        $className = "PaypalPayment";
+        $class = new $className($text_name, $text_value, $select_value_currency);
+        return $class->pay();
+
+        $result = Payment::pay($text_name,$select_payment_gateway,$text_value);
 	}
     function __destruct(){
     }
