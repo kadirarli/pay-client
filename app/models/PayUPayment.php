@@ -1,4 +1,32 @@
 <?php
+<<<<<<< HEAD:app/models/Payment.php
+=======
+class PayUPayment{
+     /**
+     * Ödeme noktalarını kontrol eder.
+     * @return  Array  Aktif olan ödeme noktaları
+     */
+    static function paymentGateWayStatus(){
+        $paypalApiStatus = PaypalApi::ApiStatus();
+        $payUApiStatus = PayUApi::ApiStatus();
+        $payTrekApiStatus = PayTrekApi::ApiStatus();
+        return array("paypal"=>$paypalApiStatus,
+            "payu"=>$payUApiStatus,
+            "paytrek"=>$payTrekApiStatus);
+    }
+    /**
+     * Kur farkı var ise, farka göre tekrar hesaplama yapmak için kullanılır.
+     * @param   String  select_payment_gateway
+     * @param   Int     text_value
+     * @param   String  select_value_currency
+     * @return  Int     Kur farkı uygulanmış yeni değer
+     */
+    static function checkCurrency($select_payment_gateway,$text_value,$select_value_currency){
+        //Hatalı//Her ödeme sisteminin ayrı sınıfı olduktan sonra if else lere ihtiyaç kalmayacak. Design Pattern ve OOP( abstract/interface )
+    	$paypal_default_currency = PaypalApi::ApiCurrency();
+		$payu_default_currency = PayUApi::ApiCurrency();
+		$paytrek_default_currency = PayTrekApi::ApiCurrency();
+>>>>>>> origin/hotfixes:app/models/PayUPayment.php
 
 abstract class Payment{
 
