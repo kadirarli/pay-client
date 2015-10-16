@@ -16,6 +16,7 @@ return array(
 	"paymentGateWayDeactive" 	=> "Ödeme noktası deaktif durumdadır!",
 	"chooseAnotherGateway"		=> "Seçtiğiniz ödeme noktası şu anda aktif değildir. Farklı bir ödeme noktası ile işleminize devam edebilirsiniz.",
 	"mailFailed"				=> "Mail gönderilemedi!",
+	"payFailed"					=> "Ödeme sırasında hata oluştu.",
 	//Olumlu Mesajlar
 	"missionCompleted"			=> "İşleminiz tamamlandı."
 

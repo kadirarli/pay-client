@@ -1,11 +1,5 @@
 <?php
-class PaypalApi extends Api{
-    //Hatalı//Method isimlendirmeleri camelCase olmalı.
-    public static $status = array("success"=>"0");
-    public function __construct(){
-        self::$status = self::apiStatus();
-        parent::__construct();
-    }
+class PaypalApi{
     /**
      * PayPal Api'sini temsil eder.
      * @return  Array  Durum bilgisini verir.
@@ -34,7 +28,5 @@ class PaypalApi extends Api{
      */
     static function apiPay(){
         return array("success"=>"1");
-    }
-    function __destruct(){
     }
 }

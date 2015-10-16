@@ -1,15 +1,10 @@
 <?php
-class PaymentController extends \BaseController{
-    public function __construct(){
-        parent::__construct();
-    }
+class PaymentController extends Controller{
     /**
      * Ödeme Sayfasını açmak için kullanılır.
      * @return  View  Ödeme Sayfası
      */
     public function paymentPage(){
-        //Bu kısım değişecek artık....
-        //$gatewayStatus = Payment::paymentGateWayStatus();
 		$selectBox = array();
         $selectBox = array_add($selectBox, 'paypal', 'Paypal');
 		$selectBox = array_add($selectBox, 'payu', 'PayU');
@@ -18,7 +13,7 @@ class PaymentController extends \BaseController{
     	return View::make('paymentPage',$data);
     }
     /**
-     * Ödeme yapmak için kullanılır
+     * Ödeme yapmak için kullanılır.
      * @return  Array  Ödeme Son Durumu
      */
 	public function pay(){
@@ -31,18 +26,15 @@ class PaymentController extends \BaseController{
         if($validator->fails()){
             $rows = $validator->messages();
             return $rows;
+        }else{
+            $text_name = Input::get("text_name");
+            $select_payment_gateway = Input::get("select_payment_gateway");
+            $text_value = Input::get("text_value");
+            $select_value_currency = Input::get("select_value_currency");
+
+            $className = "Paypal";
+            $class = new $className($text_name, $text_value, $select_value_currency);
+            return $class->pay();
         }
-        $text_name = Input::get("text_name");
-        $select_payment_gateway = Input::get("select_payment_gateway");
-        $text_value = Input::get("text_value");
-        $select_value_currency = Input::get("select_value_currency");
-
-        $className = "PaypalPayment";
-        $class = new $className($text_name, $text_value, $select_value_currency);
-        return $class->pay();
-
-        $result = Payment::pay($text_name,$select_payment_gateway,$text_value);
 	}
-    function __destruct(){
-    }
 }

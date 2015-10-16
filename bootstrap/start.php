@@ -26,7 +26,7 @@ $app = new Illuminate\Foundation\Application;
 
 $env = $app->detectEnvironment(array(
 
-	'local' => array('Ensar-Mac-mini.local'),
+	'local' => array('Kadir-MacBook-Pro.local'),
 
 ));
 

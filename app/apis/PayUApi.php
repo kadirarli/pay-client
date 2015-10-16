@@ -1,9 +1,5 @@
 <?php
-class PayUApi extends Api{
-    //Hatalı//Method isimlendirmeleri camelCase olmalı.
-    public function __construct(){
-        parent::__construct();
-    }
+class PayUApi{
     /**
      * PayU Api'sini temsil eder.
      * @return  Array  Durum bilgisini verir.
@@ -32,7 +28,5 @@ class PayUApi extends Api{
      */
     static function ApiPay(){
         return array("success"=>"1");
-    }
-    function __destruct(){
     }
 }

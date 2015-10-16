@@ -1,9 +1,5 @@
 <?php
-class PayTrekApi extends Api{
-    //Hatalı//Method isimlendirmeleri camelCase olmalı.
-    public function __construct(){
-        parent::__construct();
-    }
+class PayTrekApi{
     /**
      * PayTrek Api'sini temsil eder.
      * @return  Array  Durum bilgisini verir.
@@ -32,7 +28,5 @@ class PayTrekApi extends Api{
      */
     static function apiPay(){
         return array("success"=>"1");
-    }
-    function __destruct(){
     }
 }
