@@ -41,9 +41,9 @@ class PaymentController extends Controller{
             $select_payment_gateway = Input::get("select_payment_gateway");
             $text_value = Input::get("text_value");
             $select_value_currency = Input::get("select_value_currency");
-
-            $className = "Paypal";
-            $class = new $className($text_name, $text_value, $select_value_currency);
+            $gateWays = new GateWay;
+            $gateWayList = $gateWays::where("id","=",$select_payment_gateway)->get();
+            $class = new $gateWayList["0"]->className($text_name, $text_value, $select_value_currency);
             return $class->pay();
         }
 	}
