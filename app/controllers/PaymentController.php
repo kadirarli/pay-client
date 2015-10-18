@@ -5,11 +5,21 @@ class PaymentController extends Controller{
      * @return  View  Ödeme Sayfası
      */
     public function paymentPage(){
-		$selectBox = array();
-        $selectBox = array_add($selectBox, 'paypal', 'Paypal');
-		$selectBox = array_add($selectBox, 'payu', 'PayU');
-		$selectBox = array_add($selectBox, 'paytrek', 'Paytrek');
-    	$data = array("data"=>$selectBox);
+        $gateWays = new GateWay;
+        $gateWayList = $gateWays::get();
+        $gateWayStatuses = array();
+        foreach ($gateWayList as $key => $value) {
+            $className = $value->className;
+            $text_name = "default";
+            $text_value = "0";
+            $select_value_currency = "default";
+            $class = new $className($text_name, $text_value, $select_value_currency);
+            $status = $class->checkApiStatus();
+            if($status["success"] == "1"){
+                $gateWayStatuses = array_add($gateWayStatuses,$value->id,$value->description);
+            }
+        }
+        $data = array("data"=>$gateWayStatuses);
     	return View::make('paymentPage',$data);
     }
     /**

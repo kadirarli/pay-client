@@ -1,8 +1,8 @@
 <?php
-class Payment{
+abstract class Payment{
     public $paymentApiName;
     public $text_name, $text_value, $select_value_currency;
-    //abstract protected function valueSet();
+    abstract public function checkApiStatus();
     public function checkCurrency(){
         $className = $this->paymentApiName;
         $class = new $className;
@@ -19,7 +19,7 @@ class Payment{
         $gatewayStatus = $class::ApiStatus();
         if($gatewayStatus["success"]=="1"){
             $new_value = $this->checkCurrency();
-            $payStatus = $class::ApiPay(); 
+            $payStatus = $class::ApiPay();
             if($payStatus["success"]=="1"){
                 $mailResult = $this->sendVoucher();
                 if($mailResult["success"] == "1"){

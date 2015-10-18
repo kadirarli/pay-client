@@ -6,4 +6,10 @@ class PayTrek extends Payment{
         $this->$text_value = $text_value;
         $this->$select_value_currency = $select_value_currency;
     }
+    public function checkApiStatus(){
+    	$this->paymentApiName = "PayTrekApi";
+    	$className = $this->paymentApiName;
+    	$class = new $className;
+    	return $class::apiStatus();
+    }
 }

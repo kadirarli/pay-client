@@ -5,7 +5,7 @@ class PaypalApi{
      * @return  Array  Durum bilgisini verir.
      */
     static function apiStatus(){
-    	return array("success"=>"1");
+    	return array("success"=>"0");
         //return array("success"=>"0","error_message"=>Lang::get("messages.paymentGateWayDeactive"));
     }
     /**

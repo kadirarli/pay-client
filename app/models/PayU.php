@@ -5,5 +5,11 @@ class PayU extends Payment{
         $this->$text_name = $text_name; 
         $this->$text_value = $text_value;
         $this->$select_value_currency = $select_value_currency;
-    }   
+    }  
+    public function checkApiStatus(){
+    	$this->paymentApiName = "PayUApi";
+    	$className = $this->paymentApiName;
+    	$class = new $className;
+    	return $class::apiStatus();
+    } 
 }
