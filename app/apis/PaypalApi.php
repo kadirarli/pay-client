@@ -1,39 +1,32 @@
 <?php
-class PaypalApi extends Api{
-    public static $status = array("success"=>"0");
-    public function __construct(){
-        self::$status = self::ApiStatus();
-        parent::__construct();
-    }
+class PaypalApi{
     /**
      * PayPal Api'sini temsil eder.
      * @return  Array  Durum bilgisini verir.
      */
-    static function ApiStatus(){
-    	return array("success"=>"1");
+    static function apiStatus(){
+    	return array("success"=>"0");
         //return array("success"=>"0","error_message"=>Lang::get("messages.paymentGateWayDeactive"));
     }
     /**
      * PayPal Api'sini temsil eder.
      * @return  Array  Standart kur bilgisini verir.
      */
-    static function ApiCurrency(){
+    static function apiCurrency(){
         return "eur";
     }
     /**
      * PayPal Api'sini temsil eder.
      * @return  Array  Kur farkı bilgisini verir.
      */
-    static function ApiExchangeRate(){
+    static function apiExchangeRate(){
         return 1.08;
     }
     /**
      * PayPal Api'sini temsil eder.
      * @return  Array  Ödeme Bilgisini verir.
      */
-    static function ApiPay(){
+    static function apiPay(){
         return array("success"=>"1");
-    }
-    function __destruct(){
     }
 }

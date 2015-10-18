@@ -1,13 +1,10 @@
 <?php
-class PayTrekApi extends Api{
-    public function __construct(){
-        parent::__construct();
-    }
+class PayTrekApi{
     /**
      * PayTrek Api'sini temsil eder.
      * @return  Array  Durum bilgisini verir.
      */
-    static function ApiStatus(){
+    static function apiStatus(){
         return array("success"=>"1");
         //return array("success"=>"0","error_message"=>Lang::get("messages.paymentGateWayDeactive"));
     }
@@ -15,23 +12,21 @@ class PayTrekApi extends Api{
      * PayTrek Api'sini temsil eder.
      * @return  Array  Standart kur bilgisini verir.
      */
-    static function ApiCurrency(){
+    static function apiCurrency(){
         return "usd";
     }
     /**
      * PayTrek Api'sini temsil eder.
      * @return  Array  Kur farkı bilgisini verir.
      */
-    static function ApiExchangeRate(){
+    static function apiExchangeRate(){
         return 1.10;
     }
     /**
      * PayTrek Api'sini temsil eder.
      * @return  Array  Ödeme Bilgisini verir.
      */
-    static function ApiPay(){
+    static function apiPay(){
         return array("success"=>"1");
-    }
-    function __destruct(){
     }
 }
